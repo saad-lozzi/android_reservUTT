@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "180734932280",
+    "firebase_url": "https://reservutt.firebaseio.com",
+    "project_id": "reservutt",
+    "storage_bucket": "reservutt.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:180734932280:android:07eeea7e190619e64c7dcd",
+        "android_client_info": {
+          "package_name": "com.example.reservutt"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "180734932280-02u1i30v66r7n0o2l0tvehg5i84a03t5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.reservutt",
+            "certificate_hash": "cea9ed60cc445c07ed46542fb67b8afcea064922"
+          }
+        },
+        {
+          "client_id": "180734932280-60nkeo6mvinv7f64c4gg2qa8d4pe3tfr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBjmGFmVM3Qks63AIsdzPSxNvGXJPiP5A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "180734932280-60nkeo6mvinv7f64c4gg2qa8d4pe3tfr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
