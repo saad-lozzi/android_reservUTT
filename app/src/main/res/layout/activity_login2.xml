@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/main2"
     tools:context=".Login2Activity">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="150dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
         android:orientation="horizontal"
@@ -21,13 +21,16 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="729dp"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/txtvLoginEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/raleway"
+                android:textSize="20dp"
+                android:textColor="#000000"
                 android:text="@string/prompt_email" />
 
             <EditText
@@ -41,6 +44,9 @@
                 android:id="@+id/tvtVloginPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/raleway"
+                android:textSize="20dp"
+                android:textColor="#000000"
                 android:text="@string/prompt_password" />
 
             <EditText
@@ -54,7 +60,11 @@
                 android:id="@+id/btnLogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/prompt_login" />
+                android:backgroundTint="#3F51B5"
+                android:text="@string/prompt_login"
+                android:fontFamily="@font/raleway"
+                android:textSize="20dp"
+                android:textColor="#FFFFFF" />
         </LinearLayout>
     </LinearLayout>
 

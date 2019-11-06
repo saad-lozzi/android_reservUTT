@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.reservutt.Common.Services;
 import com.example.reservutt.ui.login.LoginActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -23,7 +24,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
 
     private FirebaseAuth mAuth;
 
-    private static final String TAG = "MainActivity";
+    private static final String TAG = "SignupActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,24 +58,32 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
 
         if(v.getId() == R.id.btnSignup)
         {
-            createAccount();
+            EditText emailET = (EditText) findViewById(R.id.edittxtEmail);
 
-            Intent i = new Intent(this, LoginActivity.class);
+            EditText passwordET = (EditText) findViewById(R.id.edittxtPassword);
 
-            //startActivity(i);
+            String email = emailET.getText().toString();
+
+            String password = passwordET.getText().toString();
+
+            if (email.matches("")|| password.matches(""))
+            {
+                Toast.makeText(getApplicationContext(), "Email or password not specified.",
+                        Toast.LENGTH_SHORT).show();
+            }
+            else
+            {
+                createAccount(email, password);
+
+                Intent i = new Intent(this, LoginActivity.class);
+
+                startActivity(i);
+            }
         }
     }
 
-    public void createAccount()
+    public void createAccount(String email, String password)
     {
-        EditText emailET = (EditText) findViewById(R.id.edittxtEmail);
-
-        EditText passwordET = (EditText) findViewById(R.id.edittxtPassword);
-
-        String email = emailET.getText().toString();
-
-        String password = passwordET.getText().toString();
-
         Task<AuthResult> authResultTask = mAuth.createUserWithEmailAndPassword(email, password)
 
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>()

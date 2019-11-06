@@ -55,9 +55,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             // FirebaseUser.getIdToken() instead.
             String uid = user.getUid();
 
-            TextView welcomeTxt = (TextView) findViewById(R.id.welcome);
-
-            welcomeTxt.setText(email);
         }
         else
         {
@@ -79,13 +76,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void updateUI(FirebaseUser user)
     {
-        //String email = user.getEmail().toString();
 
-        //String id = user.getUid();
-
-        TextView welcome = findViewById(R.id.welcome);
-
-        //welcome.setText("Welcome ");
     }
 
     @Override

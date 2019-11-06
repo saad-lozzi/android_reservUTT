@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.reservutt.Common.Services;
 import com.example.reservutt.ui.login.LoginActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -18,11 +19,14 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import butterknife.BindView;
+import butterknife.OnClick;
+
 public class Login2Activity extends AppCompatActivity implements View.OnClickListener
 {
     private FirebaseAuth mAuth;
 
-    private static final String TAG = "MainActivity";
+    private static final String TAG = "Login2Activity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -45,27 +49,36 @@ public class Login2Activity extends AppCompatActivity implements View.OnClickLis
 
         if(v.getId() == R.id.btnLogin)
         {
-            loginUser();
+            EditText emailET = (EditText) findViewById(R.id.edittxtLoginEmail);
+
+            EditText passwordET = (EditText) findViewById(R.id.edittxtLoginPassword);
+
+            String email = emailET.getText().toString();
+
+            String password = passwordET.getText().toString();
+
+            if (email.matches("")|| password.matches(""))
+        {
+            Toast.makeText(getApplicationContext(), "Email or password not specified.",
+                    Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            loginUser(email, password);
 
             Intent i = new Intent(this, MainActivity.class);
 
             startActivity(i);
         }
+
+
+        }
     }
 
-    public String loginUser()
+    public String loginUser(String email, String password)
     {
-        EditText emailET = (EditText) findViewById(R.id.edittxtLoginEmail);
-
-        EditText passwordET = (EditText) findViewById(R.id.edittxtLoginPassword);
-
-        String email = emailET.getText().toString();
-
-        String password = passwordET.getText().toString();
-
         System.out.println("Email "+email);
 
-        if (email != null && password != null) {
             mAuth.signInWithEmailAndPassword(email, password)
 
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -92,7 +105,7 @@ public class Login2Activity extends AppCompatActivity implements View.OnClickLis
                             // ...
                         }
                     });
-        }
+
         return email;
     }
 }
