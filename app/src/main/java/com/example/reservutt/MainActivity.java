@@ -16,6 +16,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener
 {
     private FirebaseAuth mAuth;
+
     private static final String TAG = "MainActivity";
 
     @Override

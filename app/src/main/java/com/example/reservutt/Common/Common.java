@@ -16,9 +16,14 @@ import com.google.firebase.auth.FirebaseUser;
 
 import static android.content.ContentValues.TAG;
 
-public class Services {
-    public Services(FirebaseAuth mAuth) {
+public class Common
+{
+    public static String IS_LOGIN = "isLogin";
+
+    public Common(FirebaseAuth mAuth)
+    {
         this.mAuth = mAuth;
+
         mAuth = FirebaseAuth.getInstance();
     }
 

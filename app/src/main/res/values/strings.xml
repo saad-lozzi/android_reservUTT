@@ -13,4 +13,14 @@
     <string name="prompt_signup">Inscription</string>
     <string name="prompt_login">Connexion</string>
     <string name="welcome_text">Bienvenu dans reservUTT!</string>
+    <string name="bottom_navigation_menu_landscape">Landscape</string>
+    <string name="bottom_navigation_menu_logos">Logo</string>
+    <string name="bottom_navigation_menu_android">Android</string>
+    <string name="bottom_navigation_menu_reservations">Réservations</string>
+    <string name="bottom_navigation_menu_home">Acceuil</string>
+    <string name="bottom_navigation_menu_reserver">Réserver</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.reservutt.Common.Services;
+import com.example.reservutt.Common.Common;
 import com.example.reservutt.ui.login.LoginActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -45,6 +45,10 @@ public class Login2Activity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View v)
     {
+        FirebaseUser user = mAuth.getCurrentUser();
+
+        String id = user.getUid();
+
         v.setSelected(!v.isSelected());
 
         if(v.getId() == R.id.btnLogin)
@@ -58,20 +62,22 @@ public class Login2Activity extends AppCompatActivity implements View.OnClickLis
             String password = passwordET.getText().toString();
 
             if (email.matches("")|| password.matches(""))
-        {
-            Toast.makeText(getApplicationContext(), "Email or password not specified.",
-                    Toast.LENGTH_SHORT).show();
-        }
-        else
-        {
-            loginUser(email, password);
+            {
+                Toast.makeText(getApplicationContext(), "Email ou mot de passe non entrés.",
+                        Toast.LENGTH_SHORT).show();
+            }
+            else
+            {
+                loginUser(email, password);
 
-            Intent i = new Intent(this, MainActivity.class);
+                System.out.println("current id is "+ id);
 
-            startActivity(i);
-        }
-
-
+                if (id.matches(""))
+                {
+                    Toast.makeText(getApplicationContext(), "Non connecté",
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
         }
     }
 
@@ -89,14 +95,22 @@ public class Login2Activity extends AppCompatActivity implements View.OnClickLis
                                 // Sign in success, update UI with the signed-in user's information
                                 Log.d(TAG, "signInWithEmail:success");
 
-                                FirebaseUser user = mAuth.getCurrentUser();
+                                System.out.println("Successfully logged");
+
+                                Intent i = new Intent(Login2Activity.this, HomeActivity.class);
+
+                                i.putExtra(Common.IS_LOGIN, true);
+
+                                startActivity(i);
+
+                                finish();
 
                                 //updateUI(user);
                             } else {
                                 // If sign in fails, display a message to the user.
                                 Log.w(TAG, "signInWithEmail:failure", task.getException());
 
-                                Toast.makeText(getApplicationContext(), "Authentication failed.",
+                                Toast.makeText(getApplicationContext(), "Email ou mot de passe incorrect",
                                         Toast.LENGTH_SHORT).show();
 
                                 //updateUI(null);

@@ -12,7 +12,7 @@ import android.widget.TextView;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.reservutt.Common.Services;
+import com.example.reservutt.Common.Common;
 import com.example.reservutt.ui.login.LoginActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -75,7 +75,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
             {
                 createAccount(email, password);
 
-                Intent i = new Intent(this, LoginActivity.class);
+                Intent i = new Intent(this, Login2Activity.class);
 
                 startActivity(i);
             }
