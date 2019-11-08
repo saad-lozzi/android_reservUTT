@@ -21,6 +21,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -30,6 +32,7 @@ import butterknife.ButterKnife;
 
 public class HomeActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener
 {
+    private FirebaseAuth mAuth;
 
     protected BottomNavigationView navigationView;
 
@@ -40,9 +43,14 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
 
     CollectionReference userRef;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+        mAuth = FirebaseAuth.getInstance();
+
+        FirebaseUser user = mAuth.getCurrentUser();
+
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_home);
@@ -63,6 +71,14 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
 
             }
         }
+
+
+        //showUpdateDialog(user.getUid());
+        Fragment fragment = new HomeFragment();
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment)
+                .commit();
+
 
         /*bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             Fragment fragment = null;
@@ -102,7 +118,9 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
 
             fragment = new ReserveFragment();
         return loadFragment(fragment);
+
     }
+
 
     private boolean loadFragment(Fragment fragment)
     {
@@ -117,6 +135,8 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
 
     private void showUpdateDialog(final String userId)
     {
+        System.out.println("Update is open");
+
         bottomSheetDialog = new BottomSheetDialog(this);
         bottomSheetDialog.setCanceledOnTouchOutside(false);
         bottomSheetDialog.setCancelable(false);
