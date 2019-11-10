@@ -2,63 +2,99 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SignupActivity">
 
     <LinearLayout
-        android:layout_width="409dp"
-        android:layout_height="729dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="1dp">
 
         <TextView
             android:id="@+id/txtvUsername"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="@string/prompt_username" />
+            android:textColor="#000000"
+            android:fontFamily="@font/roboto_light"
+            android:text="@string/prompt_username"
+            android:textSize="18dp" />
 
         <EditText
             android:id="@+id/edittxtUsername"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/prompt_username"
             android:inputType="textPersonName" />
+
+        <Spinner
+            android:layout_marginBottom="15dp"
+            android:id="@+id/spinnerProfession"
+            android:entries="@array/profession_array"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/txtvEmail"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="@string/prompt_email" />
+            android:fontFamily="@font/roboto_light"
+            android:textColor="#000000"
+            android:text="@string/prompt_email"
+            android:textSize="18dp" />
 
         <EditText
             android:id="@+id/edittxtEmail"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="@string/prompt_email"
             android:inputType="textEmailAddress" />
 
         <TextView
             android:id="@+id/txtvPassword"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
+            android:textColor="#000000"
             android:layout_height="wrap_content"
-            android:text="@string/prompt_password" />
+            android:fontFamily="@font/roboto_light"
+            android:text="@string/prompt_password"
+            android:textSize="18dp" />
 
         <EditText
             android:id="@+id/edittxtPassword"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="**********"
+            android:hint=""
+            android:inputType="textPassword" />
+
+        <TextView
+            android:id="@+id/txtvPasswordConf"
+            android:layout_width="300dp"
+            android:textColor="#000000"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_light"
+            android:text="@string/prompt_password_conf"
+            android:textSize="18dp" />
+
+        <EditText
+            android:id="@+id/edittxtPasswordConf"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint=""
             android:inputType="textPassword" />
 
         <Button
             android:id="@+id/btnSignup"
-            android:layout_width="match_parent"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="@string/prompt_signup" />
+            android:backgroundTint="#3F51B5"
+            android:text="@string/prompt_signup"
+            android:textColor="#ffffff" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

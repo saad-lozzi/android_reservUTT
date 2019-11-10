@@ -2,7 +2,7 @@ package com.example.reservutt.Models;
 
 public class User
 {
-    private String id,username,phone,profession;
+    private String id,username,email,profession;
 
     public User()
     {
@@ -17,12 +17,12 @@ public class User
         this.username = username;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getEmail() {
+        return email;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getProfession() {
@@ -41,10 +41,10 @@ public class User
         this.id = id;
     }
 
-    public User(String id, String username, String phone, String profession) {
+    public User(String id, String username, String email, String profession) {
         this.id = id;
         this.username = username;
-        this.phone = phone;
+        this.email = email;
         this.profession = profession;
     }
 }
