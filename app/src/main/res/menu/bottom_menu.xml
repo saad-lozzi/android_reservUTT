@@ -4,19 +4,23 @@
     <item
         android:id="@+id/action_home"
         android:enabled="true"
-        android:icon="@drawable/baseline_account_circle_white_24dp"
+        android:icon="@drawable/ic_account_circle_black_24dp"
+        android:iconTint="#FFFFFF"
         android:title="@string/bottom_navigation_menu_home"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_reservations"
         android:enabled="true"
-        android:icon="@drawable/baseline_assignment_white_24dp"
+        android:icon="@drawable/ic_content_paste_black_24dp"
+        android:iconTint="#FFFFFF"
         android:title="@string/bottom_navigation_menu_reservations"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_reserve"
         android:enabled="true"
-        android:icon="@drawable/baseline_book_white_24dp"
+        android:icon="@drawable/ic_class_black_24dp"
+        android:iconTint="#FFFFFF"
         android:title="@string/bottom_navigation_menu_reserver"
+        android:textColor="#ffffff"
         app:showAsAction="ifRoom" />
 </menu>

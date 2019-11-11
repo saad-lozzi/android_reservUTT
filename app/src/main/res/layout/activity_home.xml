@@ -54,8 +54,11 @@
             android:layout_width="match_parent"
             android:layout_height="94dp"
             android:layout_gravity="bottom"
-            android:background="#ffffff"
-            app:menu="@menu/bottom_menu" />
+            android:background="#2f538a"
+            app:itemTextColor="#ffffff"
+            app:itemIconTint="#ffffff"
+            app:menu="@menu/bottom_menu"
+            />
     </FrameLayout>
 
 </RelativeLayout>
