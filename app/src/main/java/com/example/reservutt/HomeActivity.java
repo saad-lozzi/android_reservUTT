@@ -6,9 +6,14 @@ import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.reservutt.Common.Common;
@@ -16,18 +21,24 @@ import com.example.reservutt.Fragments.HomeFragment;
 import com.example.reservutt.Fragments.ReservationsFragment;
 import com.example.reservutt.Fragments.ReserveFragment;
 import com.example.reservutt.Models.User;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static android.view.View.VISIBLE;
 
 
 public class HomeActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener
@@ -43,10 +54,18 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
 
     CollectionReference userRef;
 
+    private static final String TAG = "HomeActivity";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         mAuth = FirebaseAuth.getInstance();
 
         FirebaseUser user = mAuth.getCurrentUser();
@@ -54,6 +73,8 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_home);
+
+        showData();
 
         navigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
 
@@ -175,6 +196,51 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
                bottomSheetDialog.setContentView(sheetView);
                bottomSheetDialog.show();
            }
+        });
+    }
+
+    public void showData()
+    {
+        mAuth = FirebaseAuth.getInstance();
+
+        final FirebaseUser user = mAuth.getCurrentUser();
+
+        userRef = FirebaseFirestore.getInstance().collection("User");
+
+        DocumentReference docRef = userRef.document(user.getUid());
+
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>()
+        {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task)
+            {
+                if (task.isSuccessful())
+                {
+                    DocumentSnapshot document = task.getResult();
+
+                    if (document.exists())
+                    {
+                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+
+                        TextView txtvUsername = (TextView) findViewById(R.id.txt_user_name);
+
+                        User currentUser = document.toObject(User.class);
+
+                        txtvUsername.setText(currentUser.getUsername());
+
+                        TextView txtvProfession = (TextView) findViewById(R.id.txt_member_type);
+
+                        txtvProfession.setText(currentUser.getProfession());
+                    } else
+                        {
+                        Log.d(TAG, "No such document");
+                    }
+                }
+                else
+                {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
         });
     }
 }

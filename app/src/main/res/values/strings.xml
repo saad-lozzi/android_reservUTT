@@ -17,7 +17,7 @@
     <string name="bottom_navigation_menu_logos">Logo</string>
     <string name="bottom_navigation_menu_android">Android</string>
     <string name="bottom_navigation_menu_reservations">Réservations</string>
-    <string name="bottom_navigation_menu_home">Acceuil</string>
+    <string name="bottom_navigation_menu_home">Accueil</string>
     <string name="bottom_navigation_menu_reserver">Réserver</string>
     <string name="prompt_update">Mettre à jour</string>
     <string name="prompt_password_conf">Confirmation de mot de passe</string>
