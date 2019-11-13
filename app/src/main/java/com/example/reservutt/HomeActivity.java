@@ -41,7 +41,7 @@ import butterknife.ButterKnife;
 import static android.view.View.VISIBLE;
 
 
-public class HomeActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener
+public class HomeActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, View.OnClickListener
 {
     private FirebaseAuth mAuth;
 
@@ -74,7 +74,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
 
         setContentView(R.layout.activity_home);
 
-        showData();
+        //showData();
 
         navigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
 
@@ -121,7 +121,40 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
                 return loadFragment(fragment);
             }
         }); */
+
+        //Button btnLogout = (Button) findViewById(R.id.logoutBtn);
+
+        //btnLogout.setOnClickListener(this);
     }
+
+    public void onClick(View v)
+    {
+        FirebaseUser user = mAuth.getCurrentUser();
+
+        v.setSelected(!v.isSelected());
+
+        if(v.getId() == R.id.logoutBtn)
+        {
+            mAuth.getInstance().signOut();
+
+            Intent i = new Intent(HomeActivity.this, MainActivity.class);
+
+            if(user != null)
+            {
+                System.out.println("user id : "+ user.getUid());
+            }
+            else
+            {
+                System.out.println("user is disconnected");
+            }
+
+
+
+            startActivity(i);
+
+        }
+    }
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem)
     {

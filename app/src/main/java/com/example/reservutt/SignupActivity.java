@@ -42,7 +42,16 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
     private static final String TAG = "SignupActivity";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        this.mAuth = FirebaseAuth.getInstance();
+
+        if (this.mAuth.getCurrentUser() != null)
+        {
+            Intent i = new Intent(SignupActivity.this, HomeActivity.class);
+
+            startActivity(i);
+        }
 
         super.onCreate(savedInstanceState);
 

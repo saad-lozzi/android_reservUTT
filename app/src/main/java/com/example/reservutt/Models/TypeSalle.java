@@ -11,6 +11,10 @@ public class TypeSalle
         this.nom = nom;
     }
 
+    public TypeSalle() {
+
+    }
+
     public String getImage() {
         return image;
     }

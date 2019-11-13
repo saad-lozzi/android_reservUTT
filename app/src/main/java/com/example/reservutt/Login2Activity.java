@@ -40,6 +40,13 @@ public class Login2Activity extends AppCompatActivity implements View.OnClickLis
 
         mAuth = FirebaseAuth.getInstance();
 
+        if (mAuth.getCurrentUser() != null)
+        {
+            Intent i = new Intent(Login2Activity.this, HomeActivity.class);
+
+            startActivity(i);
+        }
+
         Button btnLogin = (Button) findViewById(R.id.btnLogin);
 
         btnLogin.setOnClickListener(this);
@@ -48,9 +55,7 @@ public class Login2Activity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View v)
     {
-        FirebaseUser user = mAuth.getCurrentUser();
 
-        String id = user.getUid();
 
         v.setSelected(!v.isSelected());
 
@@ -73,13 +78,17 @@ public class Login2Activity extends AppCompatActivity implements View.OnClickLis
             {
                 loginUser(email, password);
 
+                /*FirebaseUser user = mAuth.getCurrentUser();
+
+                String id = user.getUid();
+
                 System.out.println("current id is "+ id);
 
                 if (id.matches(""))
                 {
                     Toast.makeText(getApplicationContext(), "Non connecté",
                             Toast.LENGTH_SHORT).show();
-                }
+                }*/
             }
         }
     }
