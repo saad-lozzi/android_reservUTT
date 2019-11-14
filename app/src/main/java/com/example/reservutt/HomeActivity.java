@@ -25,6 +25,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.textfield.TextInputEditText;
@@ -84,15 +85,9 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
 
         userRef = FirebaseFirestore.getInstance().collection("User");
 
-        if(getIntent() != null)
-        {
-            boolean isLogin = getIntent().getBooleanExtra(Common.IS_LOGIN, false);
-            if(isLogin)
-            {
+        BottomNavigationItemView reservBtn = (BottomNavigationItemView) findViewById(R.id.action_reserve);
 
-            }
-        }
-
+        reservBtn.setOnClickListener(this);
 
         //showUpdateDialog(user.getUid());
         Fragment fragment = new HomeFragment();
@@ -152,6 +147,12 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
 
             startActivity(i);
 
+        }
+        else if (v.getId() == R.id.action_reserve)
+        {
+            Intent i = new Intent(HomeActivity.this, ReserveActivity.class);
+
+            startActivity(i);
         }
     }
 

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/main2"
+    tools:context=".ReserveActivity">
+    <com.shuhart.stepview.StepView
+        android:id="@+id/step_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        app:sv_animationType="None"
+        app:sv_stepPadding="12dp"
+        />
+    <androidx.viewpager.widget.ViewPager
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_above="@+id/layout_button"
+        android:layout_below="@+id/step_view"
+        android:id="@+id/view_pager"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/layout_button"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:padding="4dp"
+        android:layout_alignParentBottom="true">
+        <Button
+            android:id="@+id/btn_previous_step"
+            android:text="Précedent"
+            android:enabled="false"
+            android:fontFamily="@font/roboto_light"
+            android:layout_centerHorizontal="true"
+            android:layout_above="@+id/txt_skip"
+            android:layout_marginRight="4dp"
+            android:textColor="#ffffff"
+            android:backgroundTint="#3F51B5"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/btn_next_step"
+            android:text="Précedent"
+            android:backgroundTint="#3F51B5"
+            android:textColor="#ffffff"
+            android:enabled="false"
+            android:fontFamily="@font/roboto_light"
+            android:layout_centerHozitonal="true"
+            android:layout_above="@+id/txt_skip"
+            android:layout_marginRight="4dp"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+</RelativeLayout>
