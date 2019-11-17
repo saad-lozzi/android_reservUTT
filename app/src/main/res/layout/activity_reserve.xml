@@ -14,6 +14,14 @@
         android:padding="16dp"
         app:sv_animationType="None"
         app:sv_stepPadding="12dp"
+        app:sv_selectedCircleColor="@color/buttonColor"
+        app:sv_selectedStepNumberColor="@color/txtColorWhite"
+        app:sv_selectedTextColor="@color/txtColorBlack"
+        app:sv_doneCircleColor="@color/txtColorWhite"
+        app:sv_doneStepLineColor="@color/txtColorWhite"
+        app:sv_doneTextColor="@color/txtColorBlack"
+        app:sv_doneStepMarkColor="@color/txtColorWhite"
+        app:sv_typeface="@font/roboto_light"
         />
     <androidx.viewpager.widget.ViewPager
         android:layout_height="match_parent"
@@ -24,12 +32,13 @@
         />
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/layout_button"
         android:orientation="horizontal"
         android:weightSum="2"
         android:padding="4dp"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        >
         <Button
             android:id="@+id/btn_previous_step"
             android:text="Précedent"
@@ -38,18 +47,21 @@
             android:layout_centerHorizontal="true"
             android:layout_above="@+id/txt_skip"
             android:layout_marginRight="4dp"
-            android:textColor="#ffffff"
-            android:backgroundTint="#3F51B5"
+            android:layout_marginTop="0dp"
+            android:textColor="@color/txtColorBlack"
+            android:backgroundTint="@color/txtColorWhite"
             android:layout_width="200dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            />
         <Button
             android:id="@+id/btn_next_step"
-            android:text="Précedent"
-            android:backgroundTint="#3F51B5"
-            android:textColor="#ffffff"
+            android:text="Suivant"
+            android:backgroundTint="@color/txtColorWhite"
+            android:textColor="@color/txtColorBlack"
+            android:layout_marginTop="0dp"
             android:enabled="false"
             android:fontFamily="@font/roboto_light"
-            android:layout_centerHozitonal="true"
+            android:layout_centerHorizontal="true"
             android:layout_above="@+id/txt_skip"
             android:layout_marginRight="4dp"
             android:layout_width="200dp"
