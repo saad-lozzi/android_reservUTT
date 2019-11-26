@@ -1,20 +1,55 @@
 package com.example.reservutt;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.viewpager.widget.ViewPager;
 
+import android.app.FragmentManager;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.reservutt.Adapter.MyViewPagerAdapter;
+import com.example.reservutt.Common.Common;
 import com.shuhart.stepview.StepView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.OnClick;
+
 public class ReserveActivity extends AppCompatActivity implements View.OnClickListener{
 
+    LocalBroadcastManager localBroadcastManager;
+
+    int stepIndex = 0;
+
+    ViewPager viewPager;
+
+    StepView stepView;
+
+    Button btn_next;
+
+
+    private BroadcastReceiver buttonNextReceiver = new BroadcastReceiver(){
+        @Override
+        public void onReceive(Context context, Intent intent){
+            Common.currentSalle = intent.getParcelableExtra(Common.KEY_SALLE_STORE);
+            btn_next.setEnabled(true);
+            setColorButton();
+        }
+    };
+
+    @Override
+    protected void onDestroy(){
+        localBroadcastManager.unregisterReceiver(buttonNextReceiver);
+        super.onDestroy();
+    }
 
 
     @Override
@@ -24,11 +59,14 @@ public class ReserveActivity extends AppCompatActivity implements View.OnClickLi
 
         setContentView(R.layout.activity_reserve);
 
-        StepView stepView = findViewById(R.id.step_view);
+        localBroadcastManager = LocalBroadcastManager.getInstance(this);
+        localBroadcastManager.registerReceiver(buttonNextReceiver, new IntentFilter(Common.KEY_ENABLE_BUTTON_NEXT));
 
-        ViewPager viewPager = findViewById(R.id.view_pager);
+        stepView = findViewById(R.id.step_view);
 
-        Button btn_next = (Button) findViewById(R.id.btn_next_step);
+        viewPager = findViewById(R.id.view_pager);
+
+        btn_next = (Button) findViewById(R.id.btn_next_step);
 
         Button btn_previous = (Button) findViewById(R.id.btn_previous_step);
 
@@ -57,6 +95,17 @@ public class ReserveActivity extends AppCompatActivity implements View.OnClickLi
                 {
                     btn_previous.setEnabled(true);
                 }
+                if(i==2){
+                    if(Common.currentSalle != null)
+                        loadTimeSlotOfSalle(Common.currentSalle.getId());
+                }
+                if(i==3){
+                    //btn_next.setEnabled(false);
+                }
+                else
+                {
+                    //btn_next.setEnabled(true);
+                }
                 setColorButton();
             }
 
@@ -73,6 +122,10 @@ public class ReserveActivity extends AppCompatActivity implements View.OnClickLi
 
     }
 
+    private void loadTimeSlotOfSalle(String salleId) {
+
+    }
+
     private void setColorButton()
     {
         Button btn_next = (Button) findViewById(R.id.btn_next_step);
@@ -81,7 +134,7 @@ public class ReserveActivity extends AppCompatActivity implements View.OnClickLi
 
         if (btn_next.isEnabled())
         {
-            btn_next.setBackgroundResource(R.color.buttonColor);
+            btn_next.setBackgroundResource(R.color.txtColorWhite);
         }
         else
         {
@@ -89,7 +142,7 @@ public class ReserveActivity extends AppCompatActivity implements View.OnClickLi
         }
         if (btn_previous.isEnabled())
         {
-            btn_previous.setBackgroundResource(R.color.buttonColor);
+            btn_previous.setBackgroundResource(R.color.txtColorWhite);
         }
         else
         {
@@ -104,11 +157,25 @@ public class ReserveActivity extends AppCompatActivity implements View.OnClickLi
 
         if(v.getId() == R.id.btn_next_step)
         {
+            System.out.println("adapter index" +stepIndex);
+            stepIndex++;
+            MyViewPagerAdapter adapter = new MyViewPagerAdapter(getSupportFragmentManager());
+            adapter.getItem(stepIndex);
+            System.out.println("Button pressed");
+            viewPager.setOffscreenPageLimit(4);
+            viewPager.setCurrentItem(stepIndex);
+            Toast.makeText(this,""+Common.currentSalle.getId(),Toast.LENGTH_SHORT).show();
+            stepView.go(stepIndex, true);
 
         }
         else if(v.getId() == R.id.btn_previous_step)
         {
-            //code
+            System.out.println("adapter index" +stepIndex);
+            stepIndex--;
+            MyViewPagerAdapter adapter = new MyViewPagerAdapter(getSupportFragmentManager());
+            adapter.getItem(stepIndex);
+            viewPager.setCurrentItem(stepIndex);
+            stepView.go(stepIndex, true);
         }
     }
     private void setupStepView()

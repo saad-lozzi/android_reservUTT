@@ -16,9 +16,11 @@ public class MyViewPagerAdapter extends FragmentPagerAdapter
         super(fm);
     }
 
+
     @Override
     public Fragment getItem(int i)
     {
+        System.out.println("adapter index" +i);
         switch(i)
         {
             case 0 :

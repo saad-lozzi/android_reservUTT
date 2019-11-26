@@ -170,8 +170,11 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
             fragment = new ReservationsFragment();
 
         else if (menuItem.getItemId() == R.id.action_reserve)
+        {
+            Intent i = new Intent(HomeActivity.this, ReserveOneActivity.class);
 
-            fragment = new ReserveFragment();
+            startActivity(i);
+        }
         return loadFragment(fragment);
 
     }

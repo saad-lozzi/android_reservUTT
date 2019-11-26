@@ -20,7 +20,7 @@
         app:sv_doneCircleColor="@color/txtColorWhite"
         app:sv_doneStepLineColor="@color/txtColorWhite"
         app:sv_doneTextColor="@color/txtColorBlack"
-        app:sv_doneStepMarkColor="@color/txtColorWhite"
+        app:sv_doneStepMarkColor="@color/txtColorBlack"
         app:sv_typeface="@font/roboto_light"
         />
     <androidx.viewpager.widget.ViewPager
@@ -39,33 +39,24 @@
         android:padding="4dp"
         android:layout_alignParentBottom="true"
         >
+
         <Button
             android:id="@+id/btn_previous_step"
-            android:text="Précedent"
-            android:enabled="false"
-            android:fontFamily="@font/roboto_light"
-            android:layout_centerHorizontal="true"
-            android:layout_above="@+id/txt_skip"
-            android:layout_marginRight="4dp"
-            android:layout_marginTop="0dp"
-            android:textColor="@color/txtColorBlack"
-            android:backgroundTint="@color/txtColorWhite"
-            android:layout_width="200dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            />
+            android:layout_weight="1"
+            android:text="Précedent" />
+
         <Button
             android:id="@+id/btn_next_step"
-            android:text="Suivant"
-            android:backgroundTint="@color/txtColorWhite"
-            android:textColor="@color/txtColorBlack"
-            android:layout_marginTop="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:enabled="false"
-            android:fontFamily="@font/roboto_light"
-            android:layout_centerHorizontal="true"
-            android:layout_above="@+id/txt_skip"
-            android:layout_marginRight="4dp"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content" />
+            android:text="Suivant" />
+
+
+
     </LinearLayout>
 
 </RelativeLayout>
