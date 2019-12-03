@@ -24,6 +24,8 @@
     <string name="prompt_profession">Profession</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="remerciement">Merci pour votre réservation !</string>
+    <string name="info_reserv">Détails de la réservation</string>
 
     <string-array name="profession_array">
         <item>Étudiant</item>

@@ -36,8 +36,12 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.Calendar;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import devs.mulham.horizontalcalendar.HorizontalCalendar;
+import devs.mulham.horizontalcalendar.utils.HorizontalCalendarListener;
 
 import static android.view.View.VISIBLE;
 
@@ -264,6 +268,8 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
                         User currentUser = document.toObject(User.class);
 
                         txtvUsername.setText(currentUser.getUsername());
+
+                        Common.currentUserName = currentUser.getUsername();
 
                         TextView txtvProfession = (TextView) findViewById(R.id.txt_member_type);
 

@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.reservutt.Adapter.MySalleAdapter;
+import com.example.reservutt.Common.Common;
 import com.example.reservutt.Common.SpaceItemDecoration;
 import com.example.reservutt.Interface.IAllSallesLoadListener;
 import com.example.reservutt.Interface.IBatimentLoadListener;
@@ -29,6 +31,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.jaredrummler.materialspinner.MaterialSpinner;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -128,6 +132,7 @@ public class ReserveStep1Fragment extends Fragment implements IAllSallesLoadList
                             {
                                 list.add(documentSnapshot.getId());
                                 iAllSallesLoadListener.onAllSalleLoadSuccess(list);
+
                             }
                         }
                     }
@@ -148,14 +153,19 @@ public class ReserveStep1Fragment extends Fragment implements IAllSallesLoadList
                 if(position > 0)
                 {
                     loadSalleOfBatiment(item.toString());
+                    Common.Batiment = item.toString();
+
                 }
                 else
                     recyclerView.setVisibility(View.GONE);
             }
         });
     }
-    private void loadSalleOfBatiment(String salleName) {
+    private void loadSalleOfBatiment(String salleName)
+    {
         dialog.show();
+
+        Common.Batiment = salleName;
 
         depRef = FirebaseFirestore.getInstance()
                 .collection("Salles")

@@ -16,21 +16,22 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.reservutt.Common.Common;
 import com.example.reservutt.Interface.IRecyclerItemSelectedListener;
 import com.example.reservutt.Models.Salle;
+import com.example.reservutt.Models.TimeSlot;
 import com.example.reservutt.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MySalleAdapter extends RecyclerView.Adapter<MySalleAdapter.MyViewHolder> {
+public class TimeAdapter /*extends RecyclerView.Adapter<TimeAdapter.MyViewHolder>*/ {
 
-    Context context;
-    List<Salle> salleList;
+    /*Context context;
+    List<TimeSlot> timeSlotList;
     List<CardView> cardViewList;
     LocalBroadcastManager localBroadcastManager;
 
-    public MySalleAdapter(Context context, List<Salle> salleList) {
+    public TimeAdapter(Context context, List<TimeSlot> list) {
         this.context = context;
-        this.salleList = salleList;
+        this.timeSlotList = list;
         cardViewList = new ArrayList<>();
         localBroadcastManager = LocalBroadcastManager.getInstance(context);
     }
@@ -45,7 +46,7 @@ public class MySalleAdapter extends RecyclerView.Adapter<MySalleAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, int i) {
-        holder.txt_salle_name.setText(salleList.get(i).getName());
+        holder.txt_salle_name.setText(timeSlotList.get(i).getStatus().toString());
         if(!cardViewList.contains(holder.card_salle))
             cardViewList.add(holder.card_salle);
 
@@ -58,7 +59,7 @@ public class MySalleAdapter extends RecyclerView.Adapter<MySalleAdapter.MyViewHo
                 holder.card_salle.setCardBackgroundColor(ContextCompat.getColor(context, android.R.color.holo_orange_dark));
 
                 Intent intent = new Intent(Common.KEY_ENABLE_BUTTON_NEXT);
-                intent.putExtra(Common.KEY_SALLE_STORE, salleList.get(pos));
+                //intent.putExtra(Common.KEY_SALLE_STORE, timeSlotList.get(pos));
                 intent.putExtra(Common.KEY_STEP, 1);
                 localBroadcastManager.sendBroadcast(intent);
             }
@@ -67,7 +68,7 @@ public class MySalleAdapter extends RecyclerView.Adapter<MySalleAdapter.MyViewHo
 
     @Override
     public int getItemCount() {
-        return salleList.size();
+        return timeSlotList.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -93,5 +94,5 @@ public class MySalleAdapter extends RecyclerView.Adapter<MySalleAdapter.MyViewHo
             iRecyclerItemSelectedListener.onItemSelectedListener(v, getAdapterPosition());
         }
     }
-
+*/
 }

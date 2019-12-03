@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.reservutt.Adapter.MyViewPagerAdapter;
 import com.example.reservutt.Common.Common;
+import com.google.firebase.firestore.CollectionReference;
 import com.shuhart.stepview.StepView;
 
 import java.util.ArrayList;
@@ -35,10 +36,20 @@ public class ReserveActivity extends AppCompatActivity implements View.OnClickLi
 
     Button btn_next;
 
+    CollectionReference timeRef;
+
 
     private BroadcastReceiver buttonNextReceiver = new BroadcastReceiver(){
         @Override
         public void onReceive(Context context, Intent intent){
+            int step = intent.getIntExtra(Common.KEY_STEP, 0);
+            if(step == 1){
+                Common.currentSalle = intent.getParcelableExtra(Common.KEY_SALLE_STORE);
+            }
+            else if (step == 2)
+            {
+                Common.currentTimeSlot = intent.getIntExtra(Common.KEY_TIME_SLOT, -1);
+            }
             Common.currentSalle = intent.getParcelableExtra(Common.KEY_SALLE_STORE);
             btn_next.setEnabled(true);
             setColorButton();
@@ -95,17 +106,20 @@ public class ReserveActivity extends AppCompatActivity implements View.OnClickLi
                 {
                     btn_previous.setEnabled(true);
                 }
-                if(i==2){
+                if(i==1){
                     if(Common.currentSalle != null)
                         loadTimeSlotOfSalle(Common.currentSalle.getId());
+                    System.out.println("salle choosing");
                 }
-                if(i==3){
-                    //btn_next.setEnabled(false);
+                if(i==2){
+                    if(Common.currentTimeSlot != -1)
+                        confirmBooking();
                 }
                 else
                 {
                     //btn_next.setEnabled(true);
                 }
+                btn_next.setEnabled(false);
                 setColorButton();
             }
 
@@ -122,8 +136,14 @@ public class ReserveActivity extends AppCompatActivity implements View.OnClickLi
 
     }
 
-    private void loadTimeSlotOfSalle(String salleId) {
+    private void confirmBooking(){
+        Intent intent = new Intent(Common.KEY_CONFIRM_BOOKING);
+        localBroadcastManager.sendBroadcast(intent);
+    }
 
+    private void loadTimeSlotOfSalle(String salleId) {
+        Intent intent = new Intent(Common.KEY_DISPLAY_TIME_SLOT);
+        localBroadcastManager.sendBroadcast(intent);
     }
 
     private void setColorButton()
@@ -166,6 +186,12 @@ public class ReserveActivity extends AppCompatActivity implements View.OnClickLi
             viewPager.setCurrentItem(stepIndex);
             Toast.makeText(this,""+Common.currentSalle.getId(),Toast.LENGTH_SHORT).show();
             stepView.go(stepIndex, true);
+
+            if (stepIndex == 1){
+                if(Common.currentSalle != null){
+                    loadTimeSlotOfSalle(Common.currentSalle.getId());
+                }
+            }
 
         }
         else if(v.getId() == R.id.btn_previous_step)
