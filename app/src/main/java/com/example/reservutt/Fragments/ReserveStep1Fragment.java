@@ -161,15 +161,15 @@ public class ReserveStep1Fragment extends Fragment implements IAllSallesLoadList
             }
         });
     }
-    private void loadSalleOfBatiment(String salleName)
+    private void loadSalleOfBatiment(String batiment)
     {
         dialog.show();
 
-        Common.Batiment = salleName;
+        Common.Batiment = batiment;
 
         depRef = FirebaseFirestore.getInstance()
                 .collection("Salles")
-                .document(salleName)
+                .document(batiment)
                 .collection("salle");
 
         depRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -182,6 +182,7 @@ public class ReserveStep1Fragment extends Fragment implements IAllSallesLoadList
                     {
                         Salle salle = documentSnapshot.toObject(Salle.class);
                         salle.setId(documentSnapshot.getId());
+                        salle.setName(documentSnapshot.getString("name"));
                         list.add(salle);
                     }
                     iBatimentLoadListener.onBatimentLoadSuccess(list);

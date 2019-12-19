@@ -1,43 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="4dp"
     android:id="@+id/card_time_slot"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="16dp"
-    android:orientation="vertical">
-    <TextView
+    android:orientation="vertical"
+    app:cardCornerRadius="4dp">
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txt_time_slot"
-        android:text="8:00 - 9:00"
-        android:textSize="12sp"
-        android:textStyle="bold"
-        android:fontFamily="@font/roboto_light"
-        android:gravity="center_horizontal" />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/txt_time_slot_description"
-        android:text="Disponible"
-        android:textSize="14sp"
-        android:textStyle="italic"
-        android:fontFamily="@font/roboto_light"
-        android:gravity="center_horizontal"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/txt_book_user_name"
-        android:text="Username"
-        android:textSize="14sp"
-        android:textStyle="italic"
-        android:fontFamily="@font/roboto_light"
-        android:gravity="center_horizontal"/>
-</LinearLayout>
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/txt_time_slot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_light"
+            android:gravity="center_horizontal"
+            android:text="8:00 - 9:00"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txt_time_slot_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_light"
+            android:gravity="center_horizontal"
+            android:text="Disponible"
+            android:textSize="14sp"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/txt_book_user_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_light"
+            android:gravity="center_horizontal"
+            android:text="Username"
+            android:textSize="14sp"
+            android:textStyle="italic" />
+    </LinearLayout>
 </androidx.cardview.widget.CardView>

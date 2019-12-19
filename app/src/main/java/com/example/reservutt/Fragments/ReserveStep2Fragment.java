@@ -77,6 +77,10 @@ public class ReserveStep2Fragment extends Fragment implements ITimeSlotLoadListe
                 .collection("salle")
                 .document(Common.currentSalle.getId());
 
+        Common.currentSalleName = Common.currentSalle.getName();
+
+        Common.currentSalleId = Common.currentSalle.getId();
+
         System.out.println("reservDoc is :"+ reservDoc);
 
         reservDoc.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -215,7 +219,7 @@ public class ReserveStep2Fragment extends Fragment implements ITimeSlotLoadListe
         System.out.println("succesful load timeslot");
         MyTimeSlotAdapter adapter = new MyTimeSlotAdapter(getActivity(), timeSlotList);
         recycler_time_slot.setAdapter(adapter);
-
+        System.out.println("SALLLLLLLE IISSSSSSS "+ Common.currentSalle.getName());
         dialog.dismiss();
     }
 
@@ -236,6 +240,8 @@ public class ReserveStep2Fragment extends Fragment implements ITimeSlotLoadListe
         MyTimeSlotAdapter adapter = new MyTimeSlotAdapter(getActivity(), list);
         recycler_time_slot.setAdapter(adapter);
         recycler_time_slot.setVisibility(View.VISIBLE);
+        System.out.println("SALLLLLLLE IISSSSSSS "+ Common.currentSalle.getName());
+
 
         System.out.println("Adapter " + adapter);
 

@@ -261,7 +261,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
 
                     if (document.exists())
                     {
-                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                        Log.d(TAG, "DocumentSnapshot data..: " + document.getData());
 
                         TextView txtvUsername = (TextView) findViewById(R.id.txt_user_name);
 
@@ -270,6 +270,10 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
                         txtvUsername.setText(currentUser.getUsername());
 
                         Common.currentUserName = currentUser.getUsername();
+
+                        Log.d(TAG,"USSSSSSSSSSSSSSER" + Common.currentUserName);
+
+                        Common.currentUserId = currentUser.getId();
 
                         TextView txtvProfession = (TextView) findViewById(R.id.txt_member_type);
 

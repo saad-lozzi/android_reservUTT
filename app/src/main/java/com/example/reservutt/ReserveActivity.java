@@ -1,6 +1,7 @@
 package com.example.reservutt;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.viewpager.widget.ViewPager;
 
@@ -109,6 +110,7 @@ public class ReserveActivity extends AppCompatActivity implements View.OnClickLi
                 if(i==1){
                     if(Common.currentSalle != null)
                         loadTimeSlotOfSalle(Common.currentSalle.getId());
+                        //System.out.println("SALLE DETAAAAAAAAAAILS "+Common.currentSalle.getId() + Common.currentSalle.getName());
                     System.out.println("salle choosing");
                 }
                 if(i==2){
@@ -184,7 +186,7 @@ public class ReserveActivity extends AppCompatActivity implements View.OnClickLi
             System.out.println("Button pressed");
             viewPager.setOffscreenPageLimit(4);
             viewPager.setCurrentItem(stepIndex);
-            Toast.makeText(this,""+Common.currentSalle.getId(),Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this,""+Common.currentSalle.getId(),Toast.LENGTH_SHORT).show();
             stepView.go(stepIndex, true);
 
             if (stepIndex == 1){
@@ -202,6 +204,10 @@ public class ReserveActivity extends AppCompatActivity implements View.OnClickLi
             adapter.getItem(stepIndex);
             viewPager.setCurrentItem(stepIndex);
             stepView.go(stepIndex, true);
+            if(stepIndex<2){
+                btn_next.setEnabled(true);
+                btn_next.setBackgroundColor(ContextCompat.getColor(ReserveActivity.this , android.R.color.white));
+            }
         }
     }
     private void setupStepView()

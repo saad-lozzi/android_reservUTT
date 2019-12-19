@@ -57,6 +57,7 @@ public class MySalleAdapter extends RecyclerView.Adapter<MySalleAdapter.MyViewHo
 
                 holder.card_salle.setCardBackgroundColor(ContextCompat.getColor(context, android.R.color.holo_orange_dark));
 
+
                 Intent intent = new Intent(Common.KEY_ENABLE_BUTTON_NEXT);
                 intent.putExtra(Common.KEY_SALLE_STORE, salleList.get(pos));
                 intent.putExtra(Common.KEY_STEP, 1);
@@ -93,5 +94,4 @@ public class MySalleAdapter extends RecyclerView.Adapter<MySalleAdapter.MyViewHo
             iRecyclerItemSelectedListener.onItemSelectedListener(v, getAdapterPosition());
         }
     }
-
 }

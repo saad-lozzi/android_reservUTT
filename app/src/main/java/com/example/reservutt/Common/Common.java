@@ -8,6 +8,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.reservutt.Models.BookingInformation;
 import com.example.reservutt.Models.Salle;
 import com.example.reservutt.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -16,6 +17,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import static android.content.ContentValues.TAG;
@@ -37,7 +39,13 @@ public class Common
     public static String list;
     public static int currentTimeSlot =-1;
     public static String currentUserName = "USER_NAME";
+    public static String currentUserId = "USER_ID";
+    public static String currentSalleName = "SALLE_NAME";
+    public static String currentSalleId = "SALLE_ID";
+    public static String currentProfession = "PROFESSION";
     public static Calendar currentDate = Calendar.getInstance();
+    public static SimpleDateFormat simpleFormatDate = new SimpleDateFormat("dd_MM_yyyy");
+    public static BookingInformation currentBooking;
 
     public Common(FirebaseAuth mAuth)
     {

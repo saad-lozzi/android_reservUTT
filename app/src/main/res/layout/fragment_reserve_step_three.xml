@@ -11,7 +11,7 @@
 
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="150dp"
+        android:layout_height="100dp"
         android:layout_gravity="center_horizontal"
         android:src="@drawable/logo" />
     <LinearLayout
@@ -36,7 +36,7 @@
             android:textSize="18sp"
             android:fontFamily="@font/roboto_light"
             android:textStyle="bold"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             android:text="@string/info_reserv"/>
         <LinearLayout
             android:layout_width="match_parent"
@@ -44,7 +44,7 @@
             android:orientation="horizontal">
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="80dp"
                 android:src="@drawable/ic_reservation3_icon_foreground"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -59,7 +59,7 @@
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="80dp"
             android:orientation="horizontal">
             <ImageView
                 android:layout_width="wrap_content"
@@ -83,7 +83,7 @@
             android:layout_marginTop="4dp"/>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="80dp"
             android:orientation="horizontal">
             <ImageView
                 android:layout_width="wrap_content"

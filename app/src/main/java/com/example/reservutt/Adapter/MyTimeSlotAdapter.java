@@ -76,8 +76,9 @@ public class MyTimeSlotAdapter extends RecyclerView.Adapter<MyTimeSlotAdapter.My
                         holder.card_time_slot.setTag(Common.DISABLE_TAG);
                         holder.card_time_slot.setCardBackgroundColor(ContextCompat.getColor(context, android.R.color.darker_gray));
                         holder.txt_time_slot_description.setText("Non Disponible");
+                        holder.card_time_slot.setClickable(false);
                         holder.txt_time_slot_description.setTextColor(ContextCompat.getColor(context, android.R.color.white));
-                        holder.txt_username.setText(slotValue.getUser().toString());
+                        holder.txt_username.setText(slotValue.getUser());
                         holder.txt_time_slot.setTextColor(ContextCompat.getColor(context, android.R.color.white));
                     }
                 }

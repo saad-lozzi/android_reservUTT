@@ -1,6 +1,7 @@
 package com.example.reservutt.Fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -17,7 +18,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.reservutt.Adapter.TypeSalleAdapter;
+import com.example.reservutt.Common.Common;
+import com.example.reservutt.HomeActivity;
 import com.example.reservutt.Interface.ITypeSallesLoadListener;
+import com.example.reservutt.MainActivity;
 import com.example.reservutt.Models.TypeSalle;
 import com.example.reservutt.Models.User;
 import com.example.reservutt.R;
@@ -32,6 +36,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.jaredrummler.materialspinner.MaterialSpinner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +50,7 @@ import static android.content.ContentValues.TAG;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HomeFragment extends Fragment implements ITypeSallesLoadListener{
+public class HomeFragment extends Fragment implements ITypeSallesLoadListener, View.OnClickListener {
 
     Unbinder unbinder;
 
@@ -62,6 +67,10 @@ public class HomeFragment extends Fragment implements ITypeSallesLoadListener{
 
     RecyclerView recyclerView;
 
+    MaterialSpinner spinner;
+
+    Button btn_logout;
+
     public HomeFragment() {
         typeSallesRef = FirebaseFirestore.getInstance().collection("Type_Salles");
 
@@ -76,6 +85,12 @@ public class HomeFragment extends Fragment implements ITypeSallesLoadListener{
 
         FirebaseUser user = mAuth.getCurrentUser();
 
+        if (user == null)
+        {
+            Intent i = new Intent(getContext(), MainActivity.class);
+            startActivity(i);
+        }
+
         showData();
 
         iTypeSallesLoadListener = this;
@@ -83,6 +98,10 @@ public class HomeFragment extends Fragment implements ITypeSallesLoadListener{
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
 
         this.recyclerView = (RecyclerView) rootView.findViewById(R.id.type_salle);
+
+        btn_logout = (Button)rootView.findViewById(R.id.logoutBtn);
+
+        btn_logout.setOnClickListener(this);
 
         loadTypeSalles();
 
@@ -168,7 +187,15 @@ public class HomeFragment extends Fragment implements ITypeSallesLoadListener{
 
                         txtvUsername.setText(currentUser.getUsername());
 
+                        Common.currentUserName = currentUser.getUsername();
+
+                        Log.d(TAG,"USSSSSSSSSSSSSSER" + Common.currentUserName);
+
+                        Common.currentUserId = currentUser.getId();
+
                         TextView txtvProfession = (TextView)getView().findViewById(R.id.txt_member_type);
+
+                        Common.currentProfession = currentUser.getProfession();
 
                         txtvProfession.setText(currentUser.getProfession());
 
@@ -185,4 +212,29 @@ public class HomeFragment extends Fragment implements ITypeSallesLoadListener{
         });
     }
 
+    @Override
+    public void onClick(View v) {
+        FirebaseUser user = mAuth.getCurrentUser();
+
+        v.setSelected(!v.isSelected());
+
+        if(v.getId() == R.id.logoutBtn)
+        {
+            mAuth.getInstance().signOut();
+
+            Intent i = new Intent(getContext(), MainActivity.class);
+
+            if(user != null)
+            {
+                System.out.println("user id : "+ user.getUid());
+            }
+            else
+            {
+                System.out.println("user is disconnected");
+            }
+
+            startActivity(i);
+
+        }
+    }
 }
