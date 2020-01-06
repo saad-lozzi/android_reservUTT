@@ -43,6 +43,7 @@ public class Common
     public static String currentSalleName = "SALLE_NAME";
     public static String currentSalleId = "SALLE_ID";
     public static String currentProfession = "PROFESSION";
+    public static String slotToDelete = "Slot to delete";
     public static Calendar currentDate = Calendar.getInstance();
     public static SimpleDateFormat simpleFormatDate = new SimpleDateFormat("dd_MM_yyyy");
     public static BookingInformation currentBooking;

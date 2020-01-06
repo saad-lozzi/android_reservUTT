@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.example.reservutt.Common.Common;
@@ -173,7 +175,7 @@ public class ReserveStep3Fragment extends Fragment implements View.OnClickListen
                     .collection("User")
                     .document(Common.currentUserId)
                     .collection("Booking")
-                    .document(String.valueOf(Common.currentTimeSlot));
+                    .document(String.valueOf(Common.currentSalleId));
 
             bookingDateUser.set(bookingInformation)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -188,6 +190,7 @@ public class ReserveStep3Fragment extends Fragment implements View.OnClickListen
                     Toast.makeText(getContext(),""+e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
+
         }
     }
 }

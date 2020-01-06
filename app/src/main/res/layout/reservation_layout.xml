@@ -51,14 +51,25 @@
                 android:layout_marginLeft="4dp"/>
 
         </LinearLayout>
-
-        <Button
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Annuler la réservation"
-            android:background="@color/buttonColor"
-            android:textColor="@color/txtColorWhite"
-            android:layout_marginTop="20dp"/>
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reservation Id"
+                android:visibility="invisible"
+                android:id="@+id/txt_reservation_id"
+                android:textSize="24sp"
+                android:fontFamily="@font/roboto_light"
+                android:textStyle="bold"
+                android:layout_marginTop="0dp"
+                android:layout_marginLeft="4dp"/>
+
+        </LinearLayout>
+
+
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

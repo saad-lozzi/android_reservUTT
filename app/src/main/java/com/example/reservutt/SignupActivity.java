@@ -148,11 +148,11 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         EditText passwordET = (EditText) findViewById(R.id.edittxtPassword);
         String password = passwordET.getText().toString();
 
-        //String pattern = "((?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%!]).{8,40})";
+        String pattern = "((?=.*[a-z])(?=.*[A-Z]).{8,40})";
 
-        //conform = (password.matches(pattern)) ? true : false;
+        conform = (password.matches(pattern)) ? true : false;
 
-        return true;
+        return conform;
     }
 
     public void createAccount(final String email, String password, final String username, final String profession)
@@ -168,11 +168,11 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                         if (task.isSuccessful())
                         {
                             // Sign in success, update UI with the signed-in user's information
-                            FirebaseFirestore firestore = FirebaseFirestore.getInstance();
-                            FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
-                                    .setTimestampsInSnapshotsEnabled(true)
-                                    .build();
-                            firestore.setFirestoreSettings(settings);
+                            //FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+                            //FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
+                            //        .setTimestampsInSnapshotsEnabled(true)
+                            //        .build();
+                            //firestore.setFirestoreSettings(settings);
 
                             Log.d(TAG, "createUserWithEmail:success");
 

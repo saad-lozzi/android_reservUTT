@@ -3,11 +3,13 @@ package com.example.reservutt.Fragments;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
@@ -32,11 +34,13 @@ import com.example.reservutt.Models.User;
 import com.example.reservutt.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -62,6 +66,8 @@ public class ReservationsFragment extends Fragment implements IBookingLoadListen
     IBookingLoadListener iBookingLoadListener;
 
     Button btn_logout;
+
+    Button button_delete;
 
     public ReservationsFragment() {
         // Required empty public constructor
@@ -104,9 +110,15 @@ public class ReservationsFragment extends Fragment implements IBookingLoadListen
 
         btn_logout = (Button)rootView.findViewById(R.id.logoutBtn2);
 
+        button_delete = (Button)rootView.findViewById(R.id.button_delete);
+
         btn_logout.setOnClickListener(this);
 
+        button_delete.setOnClickListener(this);
+
         initView();
+
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
 
         //dialog.show();
         getReservations();
@@ -152,6 +164,7 @@ public class ReservationsFragment extends Fragment implements IBookingLoadListen
                                 BookingInformation booking = documentSnapshot.toObject(BookingInformation.class);
                                 booking.setUser(documentSnapshot.getString("user"));
                                 booking.setSalleName(documentSnapshot.getString("salleName"));
+                                booking.setSalleId(documentSnapshot.getId());
                                 list.add(booking);
                             }
                             iBookingLoadListener.onBookingLoadSuccess(list);
@@ -213,6 +226,36 @@ public class ReservationsFragment extends Fragment implements IBookingLoadListen
             }
 
             startActivity(i);
+
+        }
+        if(v.getId() == R.id.button_delete)
+        {
+            System.out.println("Button delete set for "+Common.slotToDelete);
+            DocumentReference doc = FirebaseFirestore.getInstance()
+                    .collection("User")
+                    .document(Common.currentUserId)
+                    .collection("Booking")
+                    .document(String.valueOf(Common.slotToDelete));
+
+            doc.delete()
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Log.d(TAG, "DocumentSnapshot successfully deleted!");
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w(TAG, "Error deleting document", e);
+                        }
+                    });
+            FragmentTransaction ft = getFragmentManager().beginTransaction();
+            if (Build.VERSION.SDK_INT >= 26) {
+                ft.setReorderingAllowed(false);
+            }
+            ft.detach(this).attach(this).commit();
+
 
         }
     }
