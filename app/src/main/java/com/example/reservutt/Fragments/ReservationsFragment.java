@@ -147,8 +147,6 @@ public class ReservationsFragment extends Fragment implements IBookingLoadListen
 
         Timestamp toDayTimeStamp = new Timestamp(calendar.getTime());
 
-        System.out.println("timestamp is "+ toDayTimeStamp);
-
         userBooking
                 .whereGreaterThanOrEqualTo("timestamp",toDayTimeStamp)
                 .whereEqualTo("done",false)

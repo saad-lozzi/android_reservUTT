@@ -98,7 +98,6 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
 
             if (email.matches("")|| password.matches("") || profession.matches("") || username.matches("") || passwordConf.matches(""))
             {
-
                 Toast.makeText(getApplicationContext(), "Veuillez compléter toutes les informations.",
                         Toast.LENGTH_SHORT).show();
             }
@@ -167,13 +166,6 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                     {
                         if (task.isSuccessful())
                         {
-                            // Sign in success, update UI with the signed-in user's information
-                            //FirebaseFirestore firestore = FirebaseFirestore.getInstance();
-                            //FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
-                            //        .setTimestampsInSnapshotsEnabled(true)
-                            //        .build();
-                            //firestore.setFirestoreSettings(settings);
-
                             Log.d(TAG, "createUserWithEmail:success");
 
                             FirebaseUser currentUser = mAuth.getCurrentUser();
@@ -210,7 +202,6 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                                     Toast.makeText(SignupActivity.this,""+e.getMessage(),Toast.LENGTH_SHORT).show();
                                 }
                             });
-                            //updateUI(user);
                         }
                         else
                         {
@@ -221,11 +212,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                             Toast.makeText(getApplicationContext(), "Inscription échouée :"+ task.getException().getMessage(),
 
                                     Toast.LENGTH_SHORT).show();
-
-                            //updateUI(null);
                         }
-
-                        // ...
                     }
                 });
     }
