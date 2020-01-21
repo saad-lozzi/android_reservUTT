@@ -175,7 +175,7 @@ public class ReserveStep3Fragment extends Fragment implements View.OnClickListen
                     .collection("User")
                     .document(Common.currentUserId)
                     .collection("Booking")
-                    .document(String.valueOf(Common.currentSalleId));
+                    .document();
 
             bookingDateUser.set(bookingInformation)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
